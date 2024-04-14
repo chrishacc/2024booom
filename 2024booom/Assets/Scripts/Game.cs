@@ -27,33 +27,40 @@ public class Game : MonoBehaviour, IGameContext
 
     void Awake()
     {
+        Debug.Log("Game Awake");
         Instance = this;
 
         gameState = EGameState.Load;
 
         player = new Player(this);
+        Debug.Log("Game AwakeDowm");
     }
 
     IEnumerator Start()
     {
-        yield return null;
-
+        Debug.Log("Game StartLoad");
+        yield return null;//再多延迟一帧加载
+        Debug.Log("Game Start");
         //加载玩家
         player.Reload(level.Bounds, level.StartPosition);
         this.gameState = EGameState.Play;
+        Debug.Log("Game LoadDown");
         yield return null;
     }
 
     public void Update()
     {
         float deltaTime = Time.unscaledDeltaTime;
+        //Debug.Log("Game Update1");
         if (UpdateTime(deltaTime))
         {
+            //Debug.Log("Game Update2");
             if (this.gameState == EGameState.Play)
             {
+                //Debug.Log("Game Update3");
                 GameInput.Update(deltaTime);
                 //更新玩家逻辑数据
-                player.Update(deltaTime);
+                player.Update();
                 //更新摄像机
                 gameCamera.SetCameraPosition(player.GetCameraPosition());
             }

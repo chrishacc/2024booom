@@ -47,7 +47,7 @@ public partial class PlayerController
     public WallBoost WallBoost { get; set; }    //WallBoost
     private FiniteStateMachine<BaseActionState> stateMachine;
 
-    //public ISpriteControl SpriteControl { get; private set; }
+    public ISpriteControl SpriteControl { get; private set; }
     //特效控制器
     //public IEffectControl EffectControl { get; private set; }
     //音效控制器

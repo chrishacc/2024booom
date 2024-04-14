@@ -14,13 +14,13 @@ using UnityEngine;
 
         private IGameContext gameContext;
 
-        public Player(IGameContext gameContext)
-        {
-            this.gameContext = gameContext;
-        }
+    public Player(IGameContext gameContext)
+    {
+        this.gameContext = gameContext;
+    }
 
-        //加载玩家实体
-        public void Reload(Bounds bounds, Vector2 startPosition)
+    //加载玩家实体
+    public void Reload(Bounds bounds, Vector2 startPosition)
         {
             this.playerRenderer = Object.Instantiate(Resources.Load<PlayerRenderer>("PlayerRenderer"));
             //this.playerRenderer = AssetHelper.Create<PlayerRenderer>("Assets/ProPlatformer/_Prefabs/PlayerRenderer.prefab");
@@ -30,15 +30,15 @@ using UnityEngine;
             this.playerController = new PlayerController();
             this.playerController.Init(bounds, startPosition);
 
-            PlayerParams playerParams = Resources.Load<PlayerParams>("PlayerParam");
+            PlayerParams playerParams = Resources.Load<PlayerParams>("PlayerParams");
             //PlayerParams playerParams = AssetHelper.LoadObject<PlayerParams>("Assets/ProPlatformer/PlayerParam.asset");
             playerParams.SetReloadCallback(() => this.playerController.RefreshAbility());
             playerParams.ReloadParams();
         }
 
-        public void Update(float deltaTime)
+        public void Update()
         {
-            playerController.Update(deltaTime);
+            playerController.Update(Time.unscaledDeltaTime);
             Render();
         }
 
