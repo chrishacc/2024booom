@@ -12,11 +12,11 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Wall
+  - FragmentLayer
+  - Bullet
+  - Ground2
+  - Ground3
   - 
   - 
   - 
